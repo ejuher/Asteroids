@@ -1,0 +1,30 @@
+<!-- index.html -->
+<html>
+  <head>
+     <script type="application/javascript" src="./lib/movingObject.js"></script>
+     <script type="application/javascript" src="./lib/util.js"></script>
+     <script type="application/javascript" src="./lib/asteroid.js"></script>
+     <script type="application/javascript" src="./lib/game.js"></script>     
+     <script type="application/javascript" src="./lib/gameView.js"></script>  
+     <style>
+     body { 
+       background-color: black;
+     }
+     canvas {
+       border: thin solid white;
+     }
+     </style>
+  </head>
+
+  <body>
+
+  <canvas width='500' height='500'></canvas>
+   
+  <script>
+    var canvasEl = document.getElementsByTagName("canvas")[0];
+    var game = new Asteroids.Game();
+    var gameView = new Asteroids.GameView(canvasEl, game);
+    gameView.start();
+  </script>
+  </body>
+</html>
