@@ -5,13 +5,14 @@
   
   var MovingObject = Asteroids.MovingObject;
   
-  var Asteroid = Asteroids.Asteroid = function (position) {
+  var Asteroid = Asteroids.Asteroid = function (asteroidArgs) {
     var COLOR = "#FE2EF7";
     var RADIUS = 10;
   
     vel = Asteroids.Util.randomVec(5);
     
-    var hashArgs = {pos: position["pos"], vel: vel, radius: RADIUS, color: COLOR};
+    var hashArgs = {pos: asteroidArgs["pos"], game: asteroidArgs["game"], 
+    vel: vel, radius: RADIUS, color: COLOR};
     
     MovingObject.call(this, hashArgs);
   };
