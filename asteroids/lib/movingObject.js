@@ -3,12 +3,12 @@
     window.Asteroids = {};
   }
   
-  var MovingObject = Asteroids.MovingObject = function (hashArgs) {
-    this.pos = hashArgs["pos"];
-    this.vel = hashArgs["vel"];
-    this.radius = hashArgs["radius"];
-    this.color = hashArgs["color"];
-    this.game = hashArgs["game"];
+  var MovingObject = Asteroids.MovingObject = function (options) {
+    this.pos = options["pos"];
+    this.vel = options["vel"];
+    this.radius = options["radius"];
+    this.color = options["color"];
+    this.game = options["game"];
     
   }; 
   
@@ -38,8 +38,8 @@
   };
   
   MovingObject.prototype.isCollidedWith = function (otherObject) {    
-    var xElement = this.pos[0] - otherObject.pos[0]; 
-    var xSquared = xElement * xElement;
+    var xSquared = Math.pow(this.pos[0] - otherObject.pos[0], 2);
+    // var xSquared = xElement * xElement;
     var yElement = this.pos[1] - otherObject.pos[1];
     var ySquared = yElement * yElement;
     
@@ -53,5 +53,16 @@
     return false;
   };
   
+  MovingObject.prototype.collideWith = function (otherObject) {
+    if (this.constructor === Ship || otherObject.constructor === Ship) {
+      if (this.constructor === Ship) {
+        this.game.remove(otherObject);
+        this.pos = Asteroids.Game.randomPosition();
+      } else {
+        this.game.remove(this)
+        otherObject.pos = Asteroids.Game.randomPosition();
+      }
+    }
+  };
   
 })();
